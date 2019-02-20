@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Developing Plugins</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link rel="stylesheet" href="ui-themes/smoothness/jquery-ui-1.10.0.custom.css" type="text/css" />
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="juqery.tooltip.js"></script>
+    <script>
+    $(function () {
+        var tooltipOptions = {
+          offsetX: 10,
+          offsetY: 5,
+          content: function() {
+              return $(this).data('tooltip-text');
+          }
+        };
+
+        // 监听部件自定义事件
+        $('a').tooltip(tooltipOptions).on('tooltipopens', function() {console.log(this)});
+
+        // 禁用插件
+        //$('a').tooltip('disable');
+
+        setInterval(function() {
+          console.log($('a').tooltip('isOpen'));
+        }, 1000);
+    });
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Inventory</h1>
+      <table id="inventory">
+        <thead>
+          <tr class="one">
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr class="two" id="sum">
+            <td>Total</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr id="average">
+            <td>Average</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td><a href="spam.html" data-tooltip-text="Nutritious and delicious!">Spam</a></td>
+            <td>4</td>
+            <td>2.50</td>
+          </tr>
+          <tr>
+            <td><a href="egg.html" data-tooltip-text="Farm fresh or scrambled!">Egg</a></td>
+            <td>12</td>
+            <td>4.32</td>
+          </tr>
+          <tr>
+            <td><a href="gourmet-spam.html" data-tooltip-text="Chef Hermann's recipe.">Gourmet Spam</a></td>
+            <td>14</td>
+            <td>7.89</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

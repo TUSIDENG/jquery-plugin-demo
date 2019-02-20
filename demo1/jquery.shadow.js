@@ -17,7 +17,7 @@ $.fn.shadow = function (opts) {
                 left: $originalElement.offset().left + offset.x,
                 top: $originalElement.offset().top + offset.y,
                 margin: 0,
-                zIndex: -1,
+                zIndex: options.zIndex(i),
                 opacity: options.opacity,
             })
             .appendTo('body');
@@ -28,6 +28,9 @@ $.fn.shadow = function (opts) {
 $.fn.shadow.defaults = {
     copies: 5,
     opacity: 0.1,
+    zIndex: function(index) {
+        return -index;
+    },
     copyOffset: function(index) {
         return { x: index, y: index };
     }
